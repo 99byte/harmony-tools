@@ -19,7 +19,7 @@
 
 ### 获取 HarmonyOS 命令行工具
 
-建议使用官方 Command Line Tools 工具包（含完整开发链），下载后解压并配置环境变量即可使用。详细步骤请参阅 [环境变量配置指南](docs/环境变量配置指南.md)。
+建议使用官方 Command Line Tools 工具包（含完整开发链），下载后解压并配置环境变量即可使用。
 
 🔗 **下载地址**：[HarmonyOS Command Line Tools](https://developer.huawei.com/consumer/cn/download/command-line-tools-for-hmos)
 
@@ -58,30 +58,37 @@ export HVIGORW_PATH=~/command-line-tools/bin/hvigorw
 
 ## 安装方式
 
-### 方式一：源码安装（开发调试场景推荐）
+### 方式一：全局工具安装（推荐给最终用户）
+
+```bash
+# 使用 pipx（推荐，隔离环境并全局暴露可执行）
+pipx install git+<repository-url>
+
+# 或使用 uv 的工具安装（同样全局暴露入口）
+uv tool install git+<repository-url>
+```
+
+安装成功后，`harmony-hdc-mcp` 可在系统 PATH 中直接使用，便于在任意工程的 MCP 配置中引用。
+
+### 方式二：源码安装（开发调试场景）
 
 ```bash
 git clone <repository-url>
 cd harmony-tools
-
-# 使用 uv（推荐）
 uv pip install -e .
-
 # 或标准 pip
 pip install -e .
 ```
 
-### 方式二：直接拉取仓库安装（使用场景推荐）
+### 方式三：从仓库安装（指定分支或版本）
 
 ```bash
-# 使用 uv
 uv pip install git+<repository-url>
-
 # 或标准 pip
 pip install git+<repository-url>
 ```
 
-> 安装命令会自动拉取 FastMCP 等依赖，无需手动安装 MCP SDK。
+> 若使用 `uv run` 在某工程目录执行，需要该工程环境已安装本包；这不等同于全局可用。面向最终用户，优先使用“全局工具安装”。
 
 ## 运行服务
 
@@ -98,9 +105,6 @@ export HVIGORW_PATH=~/command-line-tools/bin
 
 # 启动 MCP 服务
 harmony-hdc-mcp
-
-# 或使用 uv run
-uv run harmony-hdc-mcp
 ```
 
 **客户端配置示例（stdio）**
@@ -109,8 +113,7 @@ uv run harmony-hdc-mcp
 {
   "mcpServers": {
     "harmony-tools": {
-      "command": "uv",
-      "args": ["run", "harmony-hdc-mcp"],
+      "command": "harmony-hdc-mcp",
       "env": {
         "HDC_PATH": "/path/to/command-line-tools/sdk/default/openharmony/toolchains/hdc",
         "HVIGORW_PATH": "/path/to/command-line-tools/bin/hvigorw"
@@ -134,10 +137,10 @@ uv run harmony-hdc-mcp
 ./start_http_server.sh
 
 # 或手动指定端口
-uv run harmony-hdc-mcp --transport http --port 15005
+harmony-hdc-mcp --transport http --port 15005
 
 # 自定义地址
-uv run harmony-hdc-mcp --transport http --host 0.0.0.0 --port 8080
+harmony-hdc-mcp --transport http --host 0.0.0.0 --port 8080
 ```
 
 启动后终端会显示：
