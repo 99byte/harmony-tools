@@ -6,24 +6,30 @@
 
 - 前置条件：Python ≥3.11；已安装 HarmonyOS Command Line Tools。
 - 下载地址：[HarmonyOS Command Line Tools](https://developer.huawei.com/consumer/cn/download/command-line-tools-for-hmos)
-- 必需环境变量：
-  - `HDC_PATH=/path/to/hdc`
-  - `HVIGORW_PATH=/path/to/hvigorw`
+- 配置必需环境变量：
+```bash
+# 解压后在 command-line-tools/sdk/default/openharmony/toolchains 目录下
+export HDC_PATH=/path/to/hdc
+# 解压后在 command-line-tools/bin 目录下
+export HVIGORW_PATH=/path/to/hvigorw
+```
 
 ### 安装
 
 ```bash
-pipx install git+<repository-url>
-# 开发模式
-pip install -e .
+# 全局安装（推荐）
+uv tool install git+<repository-url>
+
+# 开发模式（本地源码）
+uv pip install -e .
 ```
 
 ### 启动
 
 - `stdio`（默认）：
-  - `harmony-hdc-mcp`
+  - `uv run harmony-hdc-mcp`
 - `http`（调试/多客户端）：
-  - `harmony-hdc-mcp --transport http`
+  - `uv run harmony-hdc-mcp --transport http`
   - 或 `./start_http_server.sh`
 
 ### 客户端最小配置示例
@@ -34,7 +40,10 @@ pip install -e .
   "mcpServers": {
     "harmony-tools": {
       "command": "harmony-hdc-mcp",
-      "env": {"HDC_PATH": "/path/to/hdc", "HVIGORW_PATH": "/path/to/hvigorw"}
+      "env": {
+        "HDC_PATH": "/path/to/hdc", 
+        "HVIGORW_PATH": "/path/to/hvigorw"
+      }
     }
   }
 }
@@ -44,7 +53,9 @@ pip install -e .
 ```json
 {
   "mcpServers": {
-    "harmony-tools": {"transport": "http", "url": "http://127.0.0.1:10005/mcp"}
+    "harmony-tools": {
+      "transport": "http", 
+      "url": "http://127.0.0.1:10005/mcp"}
   }
 }
 ```
