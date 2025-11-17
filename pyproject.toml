@@ -31,3 +31,6 @@ Issues = "https://github.com/99byte/harmony-tools/issues"
 
 [project.scripts]
 harmony-tools-mcp = "harmony_tools.mcp_service:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/harmony_tools"]
