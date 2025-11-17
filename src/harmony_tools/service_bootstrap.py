@@ -16,7 +16,6 @@ from .hdc_runner import HdcResult, HdcRunner
 from .hvigor_runner import HvigorResult, HvigorRunner
 from .logging_helper import (
     configure_logger,
-    install_global_exception_hook,
     log_file_path,
 )
 
@@ -33,7 +32,6 @@ app = FastMCP("harmony-tools", host=_HTTP_HOST, port=_HTTP_PORT)
 _runner = HdcRunner()
 _hvigor_runner = HvigorRunner()
 logger = configure_logger()
-install_global_exception_hook(logger)
 
 
 class InvalidArgumentsError(ValueError):

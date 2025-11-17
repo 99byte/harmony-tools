@@ -93,27 +93,9 @@ def log_file_path() -> str:
     return str(_LOG_PATH)
 
 
-def install_global_exception_hook(logger: logging.Logger) -> None:
-    """Log any uncaught exception before the process terminates."""
-
-    global _HOOK_INSTALLED
-    if _HOOK_INSTALLED:
-        return
-
-    previous_hook = sys.excepthook
-
-    def _hook(exc_type, exc_value, exc_tb):  # type: ignore[override]
-        logger.critical("Uncaught exception", exc_info=(exc_type, exc_value, exc_tb))
-        previous_hook(exc_type, exc_value, exc_tb)
-
-    sys.excepthook = _hook
-    _HOOK_INSTALLED = True
-
-
 __all__ = [
     "configure_logger",
     "log_file_path",
-    "install_global_exception_hook",
     "LOG_DIR_ENV",
     "LOG_LEVEL_ENV",
 ]
