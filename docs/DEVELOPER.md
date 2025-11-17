@@ -25,7 +25,7 @@
 
 ## 运行模式详解
 
-入口：控制台脚本 `harmony-hdc-mcp` 指向 `harmony_tools.mcp_service:main`（`pyproject.toml:19-20`）。
+入口：控制台脚本 `harmony-tools-mcp` 指向 `harmony_tools.mcp_service:main`（`pyproject.toml:19-20`）。
 
 - `stdio`（默认）：适合被 MCP 客户端直接拉起的子进程模式。
 - `http`：独立服务器，支持多客户端并发连接，终端实时输出日志。
@@ -39,8 +39,8 @@
 示例：
 
 ```bash
-harmony-hdc-mcp                # stdio
-harmony-hdc-mcp --transport http --port 10005 --host 127.0.0.1
+harmony-tools-mcp                # stdio
+harmony-tools-mcp --transport http --port 10005 --host 127.0.0.1
 ```
 
 ## MCP 工具详解

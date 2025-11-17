@@ -36,4 +36,4 @@ echo ""
 
 # 启动 HTTP 服务
 # 所有日志会显示在此终端
-uv run harmony-hdc-mcp --transport http --port 10005
+uv run harmony-tools-mcp --transport http --port 10005
