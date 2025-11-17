@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "harmony-tools"
+name = "harmony-tools-mcp"
 version = "0.1.0"
 description = "MCP service that wraps HarmonyOS hdc commands"
 readme = "README.md"
@@ -14,7 +14,20 @@ authors = [
 dependencies = [
     "fastmcp>=2.13.0",
 ]
-keywords = ["harmony", "hdc", "mcp", "uitest"]
+keywords = ["harmony", "hdc", "mcp", "hvigor"]
+license = "MIT"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Build Tools",
+]
+
+[project.urls]
+Homepage = "https://github.com/99byte/harmony-tools"
+Repository = "https://github.com/99byte/harmony-tools"
+Issues = "https://github.com/99byte/harmony-tools/issues"
 
 [project.scripts]
-harmony-hdc-mcp = "harmony_tools.mcp_service:main"
+harmony-tools-mcp = "harmony_tools.mcp_service:main"

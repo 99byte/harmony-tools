@@ -27,9 +27,9 @@ uv pip install -e .
 ### 启动
 
 - `stdio`（默认）：
-  - `uv run harmony-hdc-mcp`
+  - `uv run harmony-tools-mcp`
 - `http`（调试/多客户端）：
-  - `uv run harmony-hdc-mcp --transport http`
+  - `uv run harmony-tools --transport http`
   - 或 `./start_http_server.sh`
 
 ### 客户端最小配置示例
@@ -39,7 +39,7 @@ uv pip install -e .
 {
   "mcpServers": {
     "harmony-tools": {
-      "command": "harmony-hdc-mcp",
+      "command": "harmony-tools-mcp",
       "env": {
         "HDC_PATH": "/path/to/hdc", 
         "HVIGORW_PATH": "/path/to/hvigorw"
